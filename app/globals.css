@@ -1,0 +1,15 @@
+:root {
+	--theme-1: #ede0d4;
+	--theme-2: #e6ccb2;
+	--theme-3: #ddb892;
+	--theme-4: #b08968;
+	--theme-5: #7f5539;
+	--theme-6: #7f5539;
+
+	--max-width: 1250px;
+	--min-height: 90vh;
+}
+
+body {
+    background: #000;
+}

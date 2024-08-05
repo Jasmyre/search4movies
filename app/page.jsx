@@ -1,13 +1,12 @@
-
 import styles from "./page.module.css";
+import Header from "@/components/header/Header";
 
-export default function Home() {
+const Home = () => {
+	return (
+		<main className={styles.main}>
+			<Header navigations={["home", "popular", "categories"]}></Header>
+		</main>
+	);
+};
 
-  
-
-  return (
-    <main className={styles.main}>
-      hello world
-    </main>
-  );
-}
+export default Home;
