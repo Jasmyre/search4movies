@@ -1,15 +1,21 @@
 :root {
-	--theme-1: #ede0d4;
-	--theme-2: #e6ccb2;
-	--theme-3: #ddb892;
-	--theme-4: #b08968;
-	--theme-5: #7f5539;
-	--theme-6: #7f5539;
+	--color-1: #E4C59E;
+	--color-2: #AF8260;
+	--color-3: #803D3B;
+	--color-4: #322C2B;
+	--color-5: #171616;	
 
-	--max-width: 1250px;
+	--max-width: 1250 px;
 	--min-height: 90vh;
 }
 
 body {
-    background: #000;
+    background: var(--color-5);
+	color: var(--color-1);
+	padding: 0;
+	margin: 0;
+}
+
+main {
+	min-height: 100vh;
 }

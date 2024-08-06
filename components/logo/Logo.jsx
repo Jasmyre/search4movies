@@ -12,7 +12,7 @@ const Logo = (props) => {
 			href="/"
 			className={color == "white" ? styles.white : styles.theme}
 		>
-			<p>BlissBrew</p>
+			<p>Search4Movies</p>
 		</a>
 	);
 };

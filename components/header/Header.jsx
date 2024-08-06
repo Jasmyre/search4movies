@@ -3,10 +3,10 @@ import styles from "./Header.module.css";
 import Image from "next/image";
 
 import PropTypes from "prop-types";
-import Button from "../button/Button";
+import SearchBar from "../search-bar/SearchBar";
 
-import { Inter } from "next/font/google";
-const inter = Inter({ subsets: ["latin"] });
+import { Roboto } from "next/font/google";
+const roboto = Roboto({ subsets: ["latin"], weight: ["400"] });
 
 let isHamburgerClicked = false;
 
@@ -56,7 +56,7 @@ const Header = (props) => {
 					<ul>
 						{navigations}
 						<li>
-							<Button href="/">Button</Button>
+							<SearchBar></SearchBar>
 						</li>
 					</ul>
 				</nav>
