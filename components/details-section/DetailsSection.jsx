@@ -1,14 +1,11 @@
-"use client";
+"use client"
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styles from "./DetailsSection.module.css";
 
-import useSWR from 'swr'
-
-
+import useSWR from "swr";
 
 const DetailsSection = (props) => {
-
 	const fetcher = async () => {
 		const options = await {
 			method: "GET",
@@ -29,10 +26,10 @@ const DetailsSection = (props) => {
 		return data;
 	};
 
-    const {data, error} = useSWR('Details', fetcher)
+	const { data, error } = useSWR("Details", fetcher);
 
-    if (error) return "An Error Has Occured"
-    if (!data) return "Loading"
+	if (error) return "An Error Has Occured";
+	if (!data) return "Loading";
 
 	return (
 		<div className={styles.details_section_container}>
@@ -42,6 +39,7 @@ const DetailsSection = (props) => {
 					<div className={styles.inner_detail_div1}>
 						<div className={styles.poster_wrapper}>
 							<img
+							className={styles.poster}
 								src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`}
 								alt=""
 								width={425}
@@ -50,31 +48,35 @@ const DetailsSection = (props) => {
 						</div>
 						<div className={styles.details}>
 							<p>
-								<b>Title: </b>{data.title}
+								<b>Title: </b>
+								{data.title}
 							</p>
 							<p>
-								<b>Release: </b>{data.release_date}
+								<b>Release: </b>
+								{data.release_date}
 							</p>
 							<p>
-								<b>Language: </b>{data.original_language}
+								<b>Language: </b>
+								{data.original_language}
 							</p>
 							<p>
-								<b>Status: </b>{data.status}
+								<b>Status: </b>
+								{data.status}
 							</p>
 							<p>
-								<b>Vote Average: </b>{data.vote_average}
+								<b>Vote Average: </b>
+								{data.vote_average}
 							</p>
 							<p>
-								<b>Vote Count: </b>{data.vote_count}
+								<b>Vote Count: </b>
+								{data.vote_count}
 							</p>
 						</div>
 					</div>
 					<div className={styles.inner_detail_div2}>
 						<div className={styles.overview_wrapper}>
 							<h4>Overview: </h4>
-							<p>
-								{data.overview}
-							</p>
+							<p>{data.overview}</p>
 						</div>
 						<div className={styles.source_wrapper}></div>
 					</div>

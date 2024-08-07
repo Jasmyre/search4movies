@@ -1,0 +1,18 @@
+.movies {
+    list-style: none;
+    padding: 40px 0px;
+    margin: 0;
+    overflow-x: scroll;
+    scroll-snap-type: y mandatory;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 40px;
+}
+
+.no_poster {
+    position: absolute;
+    display: none;
+}

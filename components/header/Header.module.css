@@ -10,7 +10,7 @@
 	align-items: center;
 
 	box-shadow: 0px 10px 10px #333333;
-	border-bottom: solid 2px var(--color-5);
+	border-bottom: solid 2px var(--color-1);
 
 	@media only screen and (max-width: 900px) {
 		padding: 0px 0px;
@@ -146,7 +146,7 @@
 	position: absolute;
 	height: 4px;
 	width: 100%;
-	background: #ffffff;
+	background: var(--color-1);
 	border-radius: 9px;
 	opacity: 1;
 	left: 0;
@@ -196,7 +196,7 @@
 
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 1070px) {
 	/* Your tablet styles go here */
 	.header {
 		padding: 12px 40px;
@@ -232,7 +232,7 @@
 		flex-direction: column;
 		margin-top: 60px;
 		height: calc(100vh - 60px);
-		width: 75vw;
+		width: 100vw;
 		justify-content: flex-start;
 		align-items: center;
 		z-index: 9998;

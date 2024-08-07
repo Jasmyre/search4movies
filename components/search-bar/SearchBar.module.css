@@ -4,6 +4,9 @@
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
+
+	/* background: #fff; */
+	/* width: 150px; */
 }
 
 .search_bar .search_input_wrapper {
@@ -11,6 +14,13 @@
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
+
+	
+	@media only screen and (max-width: 1070px) {
+		width: 200px;
+		height: 100%;
+		background: #fff;
+	}
 }
 
 .search_input_wrapper input {
@@ -18,9 +28,14 @@
     color: var(--color-5);
 	padding: 0 0 0 12px;
 	width: 300px;
+	z-index: 999999;
 	height: 32px;
 	border: none;
 	border-radius: 999px 0 0 999px;
+
+	@media only screen and (max-width: 900px) {
+		width: 200px;
+	}
 }
 
 .search_input_wrapper input:hover,

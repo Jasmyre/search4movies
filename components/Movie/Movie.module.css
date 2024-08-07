@@ -1,6 +1,12 @@
 
 .movie {
     position: relative;
+    transition: all .25s ease;
+    scroll-snap-align: start;
+}
+
+.movie:hover {
+    transform: scale(1.05);
 }
 
 .movie a {

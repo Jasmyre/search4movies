@@ -15,7 +15,7 @@ const Header = (props) => {
 		return (
 			<li key={nav}>
 				<a
-					href={`#${nav}`}
+					href={`/#${nav}`}
 					className={styles.a}
 				>
 					<span>{nav}</span>

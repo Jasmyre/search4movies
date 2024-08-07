@@ -5,8 +5,24 @@
 	--color-4: #322C2B;
 	--color-5: #171616;	
 
-	--max-width: 1250 px;
+	--max-width: 1250px;
 	--min-height: 90vh;
+}
+
+/* Hide scrollbar for WebKit browsers */
+*::-webkit-scrollbar {
+  display: none;
+
+}
+
+* {
+	box-sizing: border-box;
+	-ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+
+html {
+	scroll-behavior: smooth;
 }
 
 body {

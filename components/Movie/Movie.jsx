@@ -1,12 +1,9 @@
-import React from 'react'
-import styles from './movie.module.css'
+import React from "react";
+import styles from "./movie.module.css";
 
 const Movie = (props) => {
-  return (
-		<li
-			key={props.id}
-			className={styles.movie}
-		>
+	return (
+		<li className={styles.movie}>
 			<a href={`/detail/${props.id}`}>
 				<img
 					src={"https://image.tmdb.org/t/p/w500/" + props.poster_path}
@@ -20,7 +17,7 @@ const Movie = (props) => {
 				</div>
 			</a>
 		</li>
-  );
-}
+	);
+};
 
-export default Movie
+export default Movie;
