@@ -7,6 +7,9 @@
 
 	--max-width: 1250px;
 	--min-height: 90vh;
+
+	--movie-width: 275px; /* 325 */
+	--movie-height: 350px; /* 413 */
 }
 
 /* Hide scrollbar for WebKit browsers */

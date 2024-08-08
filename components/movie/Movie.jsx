@@ -18,8 +18,7 @@ const Movie = (props) => {
 				<img
 					src={"https://image.tmdb.org/t/p/w500/" + props.poster_path}
 					alt={props.title}
-					width={325}
-					height={413}
+					className={styles.img}
 				/>
 				<div className={styles.absolute_info}>
 					<p className={styles.movie_title}>{props.title}</p>

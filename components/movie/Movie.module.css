@@ -21,8 +21,8 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 325px;
-	height: 413px;
+	width: var(--movie-width);
+	height: var(--movie-height);
 	background: linear-gradient(#ffffff00, #000000 95%);
 }
 
@@ -30,12 +30,17 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 325px;
-	height: 413px;
+	width: var(--movie-width);
+	height: var(--movie-height);
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
 	align-items: flex-start;
+}
+
+.img {
+    width: var(--movie-width);
+    height: var(--movie-height);
 }
 
 .absolute_info p {
