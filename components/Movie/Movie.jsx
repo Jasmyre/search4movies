@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Movie.module.css";
+import PropTypes from 'prop-types'
 
 const Movie = (props) => {
 	return (
@@ -19,5 +20,12 @@ const Movie = (props) => {
 		</li>
 	);
 };
+
+Movie.PropTypes = {
+	id: PropTypes.number,
+	title: PropTypes.string,
+	poster_path: PropTypes.string,
+	release_date: PropTypes.string
+}
 
 export default Movie;
