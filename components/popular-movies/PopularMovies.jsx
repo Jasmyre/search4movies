@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./PopularMovies.module.css";
 import Movie from "../movie/Movie";
-
 const PopularMovies = (props) => {
 	return (
 		<ul className={styles.movies}>

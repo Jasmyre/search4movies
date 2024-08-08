@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./Movies.module.css";
 import Movie from "../movie/Movie";
-
 const Movies = (props) => {
 	return (
 		<ul className={styles.movies}>
