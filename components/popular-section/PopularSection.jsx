@@ -5,6 +5,7 @@ import styles from "./PopularSection.module.css";
 import useSWR from "swr";
 
 import PopularMovies from '../popular-movies/PopularMovies'
+import Loading from "../loading/Loading";
 
 const PopularSection = () => {
 	const fetcher = async () => {
@@ -35,7 +36,22 @@ const PopularSection = () => {
 	const {data, error} = useSWR("Popular", fetcher);
 
 	if (error) return "An Error Has Occured";
-	if (!data) return "Loading";
+	if (!data) return (
+		<div
+			className={styles.popular_section_container}
+			id="popular"
+		>
+			<div className={styles.popular_section_wrapper}>
+				<div className={styles.header_wrapper}>
+					<h1>Popular</h1>
+				</div>
+				<hr />
+				<div className={styles.loading_wrapper}>
+					<Loading />					
+				</div>
+			</div>
+		</div>
+	);
 
 	return (
 		<div

@@ -1,47 +1,53 @@
-
 .movie {
-    position: relative;
-    transition: all .25s ease;
-    scroll-snap-align: start;
+	position: relative;
+	scroll-snap-align: start;
+
+	opacity: 0;
+	transform: translateY(20px);
+	transition: opacity 0.25s ease-out, transform 0.25s ease-out;
 }
 
 .movie:hover {
-    transform: scale(1.05);
+	transform: scale(1.05);
 }
 
 .movie a {
-    text-decoration: none;
-    color: var(--color-1);
+	text-decoration: none;
+	color: var(--color-1);
 }
 
-.movie a::before{
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 325px;
-    height: 413px;
-    background: linear-gradient(#ffffff00, #000000 95%);
+.movie a::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 325px;
+	height: 413px;
+	background: linear-gradient(#ffffff00, #000000 95%);
 }
 
 .movie a .absolute_info {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 325px;
-    height: 413px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-start;
-
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 325px;
+	height: 413px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: flex-start;
 }
 
 .absolute_info p {
-    padding: 0;
-    margin: 0 16px 8px 16px;
+	padding: 0;
+	margin: 0 16px 8px 16px;
 }
 
 .movie_title {
-    text-overflow: ellipsis;
+	text-overflow: ellipsis;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
 }

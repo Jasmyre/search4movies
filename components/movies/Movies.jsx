@@ -1,9 +1,13 @@
+
 import React from "react";
 import styles from "./Movies.module.css";
 import Movie from "../movie/Movie.jsx";
 const Movies = (props) => {
+
 	return (
-		<ul className={styles.movies}>
+		<ul
+			className={styles.movies}
+		>
 			{props.data.map((movie) =>
 				movie.poster_path ? (
 					<Movie
