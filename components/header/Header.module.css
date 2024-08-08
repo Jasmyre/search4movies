@@ -73,6 +73,20 @@
 	color: var(--color-1);
 }
 
+.nav_wrapper {
+	width: 100%;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+
+	@media only screen and (max-width:900px) {
+		justify-content: space-between;
+		
+	}
+}
+
 .nav {
 	display: flex;
 	justify-content: center;
@@ -196,15 +210,24 @@
 
 }
 
-@media only screen and (max-width: 1070px) {
+.search_bar {
+	padding-left: 24px;
+}
+
+@media only screen and (max-width: 900px) {
 	/* Your tablet styles go here */
 	.header {
 		padding: 12px 40px;
 		height: 60px;
 	}
 
+	.logo {
+		display: none;
+	}
+
 	.logo a p {
 		font-size: 20px;
+
 	}
 
 	.nav label {

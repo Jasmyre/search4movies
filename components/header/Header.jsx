@@ -39,27 +39,27 @@ const Header = (props) => {
 						<p>Search4Movies</p>
 					</a>
 				</div>
-				<nav className={styles.nav}>
-					<input
-						type="checkbox"
-						id="burger"
-						name="burger"
-					/>
-					<label
-						className={styles.burger}
-						htmlFor="burger"
-					>
-						<span></span>
-						<span></span>
-						<span></span>
-					</label>
-					<ul>
-						{navigations}
-						<li>
-							<SearchBar></SearchBar>
-						</li>
-					</ul>
-				</nav>
+				<div className={styles.nav_wrapper}>
+					<nav className={styles.nav}>
+						<input
+							type="checkbox"
+							id="burger"
+							name="burger"
+						/>
+						<label
+							className={styles.burger}
+							htmlFor="burger"
+						>
+							<span></span>
+							<span></span>
+							<span></span>
+						</label>
+						<ul>{navigations}</ul>
+					</nav>
+					<div className={styles.search_bar}>
+						<SearchBar></SearchBar>
+					</div>
+				</div>
 			</header>
 		</div>
 	);
