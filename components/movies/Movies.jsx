@@ -1,14 +1,14 @@
-import React from 'react'
-import styles from './Movies.module.css'
-import Movie from '../movie/Movie';
+import React from "react";
+import styles from "./Movies.module.css";
+import Movie from "../movie/Movie";
 
 const Movies = (props) => {
-  return (
+	return (
 		<ul className={styles.movies}>
 			{props.data.map((movie) =>
 				movie.poster_path ? (
 					<Movie
-                        key={movie.id}
+						key={movie.id}
 						id={movie.id}
 						poster_path={movie.poster_path}
 						title={movie.title}
@@ -24,7 +24,7 @@ const Movies = (props) => {
 				)
 			)}
 		</ul>
-  );
-}
+	);
+};
 
-export default Movies
+export default Movies;
