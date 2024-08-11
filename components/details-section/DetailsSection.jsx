@@ -209,7 +209,11 @@ const DetailsSection = (props) => {
 					<div className={styles.inner_detail_div2}>
 						<div className={styles.overview_wrapper}>
 							<h4>Overview: </h4>
-							<p>{data.dataData.overview}</p>
+							<p>
+								{
+									(data.dataData.overview) ? data.dataData.overview : "No overview Available."
+								}
+							</p>
 						</div>
 						<div className={styles.source_wrapper}>
 							<fieldset

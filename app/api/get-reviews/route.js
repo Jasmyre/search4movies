@@ -5,12 +5,11 @@ export async function GET(request) {
 	noStore();
 
 	const { searchParams } = new URL(request.url);
-	const page = searchParams.get("page");
 	const id = searchParams.get("id");
 
-	if (!id || !page) {
+	if (!id) {
 		return NextResponse.json(
-			{ error: "Missing page or id parameter" },
+			{ error: "Missing id parameter" },
 			{ status: 400 }
 		);
 	}
@@ -19,16 +18,16 @@ export async function GET(request) {
 		method: "GET",
 		headers: {
 			accept: "application/json",
-			'Cache-Control': 'no-cache',
+			"Cache-Control": "no-cache",
 			Authorization:
 				"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ODZiZWIyMmM1ZDc4YzM0NjVlNWU2Y2E0ZTc3YmMwMiIsIm5iZiI6MTcyMzAyMjAwNy44MzEzMSwic3ViIjoiNjZiMDc5ODljMTU4ZjlmNWE5NTc1NGFmIiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.oPWjqssCHRDNFX8_nX7FzHM2M2vwze9c77uApm-OojA",
 		},
-        cache: "no-store",
+		cache: "no-store",
 	};
 
 	try {
 		const apiResponse = await fetch(
-			`https://api.themoviedb.org/3/movie/${id}/recommendations?language=en-US&page=${page}`,
+			`https://api.themoviedb.org/3/movie/${id}/reviews?language=en-US&page=1`,
 			options
 		);
 

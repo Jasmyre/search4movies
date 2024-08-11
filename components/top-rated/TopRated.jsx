@@ -70,7 +70,7 @@ const TopRatedSection = () => {
 		return (
 			<div
 				className={styles.popular_section_container}
-				id="trending"
+				id="top%20rated"
 			>
 				<div className={styles.popular_section_wrapper}>
 					<div className={styles.header_wrapper}>

@@ -6,7 +6,7 @@ import FooterSection from "@/components/footer-section/FooterSection";
 const page = ({ params }) => {
 	return (
 		<main>
-			<Header navigations={["home", "popular", "categories"]}></Header>
+			<Header navigations={["home", "popular", "top rated"]}></Header>
 			<SearchResult title={params.title}></SearchResult>
 			<FooterSection></FooterSection>
 		</main>

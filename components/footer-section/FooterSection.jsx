@@ -14,7 +14,7 @@ const FooterSection = () => {
 				</div>
 				<div className={styles.nav_wrapper}>
 					<Navigation
-						navigations={['popular', 'category']}
+						navigations={['popular', 'top rated']}
 					/>
 				</div>
 				<div className={styles.social_wrapper}>

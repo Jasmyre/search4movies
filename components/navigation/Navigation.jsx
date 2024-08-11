@@ -10,7 +10,7 @@ const Navigation = (props) => {
 		return (
 			<li key={nav}>
 				<a
-					href={`/#${nav.split(" ").join("")}`}
+					href={`/#${nav}`}
 					className={styles.a}
 				>
 					<span>{nav}</span>

@@ -3,17 +3,20 @@
 import React, {useRef} from "react";
 import styles from "./CommentSection.module.css";
 import useSWR from "swr";
+import { unstable_noStore as noStore } from "next/cache";
 
 import CommentCard from "../commend-card/CommentCard";
 
 const fetcher = async (url) => {
-	const res = await fetch(url);
+	noStore()
+	const res = await fetch(url, {cache: "no-store"});
 	const data = await res.json();
 	
 	return data;
 };
 
 const CommentSection = () => {
+	noStore();
 	const {data, error, mutate} = useSWR("/api/get-comment-data", fetcher);
 	const comment = useRef(null);
 	const name = useRef(null);
@@ -34,7 +37,7 @@ const CommentSection = () => {
 				);
 				name.current.value = "";
 				comment.current.value = "";
-				mutate(); // Revalidate the data after submission
+				mutate(); 
 			} catch (error) {
 				console.error("Error submitting comment:", error);
 			}
