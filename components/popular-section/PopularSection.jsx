@@ -21,7 +21,7 @@ const PopularSection = () => {
 		};
 
 		const res1 = await fetch(
-			"https://api.themoviedb.org/3/trending/movie/day?language=en-US",
+			"https://api.themoviedb.org/3/movie/popular?language=en-US&page=1&region=PH",
 			options
 		);
 

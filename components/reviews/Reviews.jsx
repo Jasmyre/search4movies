@@ -5,44 +5,43 @@ import styles from "./Reviews.module.css";
 import useSWR from "swr";
 import { unstable_noStore as noStore } from "next/cache";
 
-import CommentCard from "../commend-card/CommentCard";
+import Review from "../review/Review";
 
 const fetcher = async (url) => {
 	noStore();
 	const res = await fetch(url, { cache: "no-store" });
 	const data = await res.json();
+	console.log(data);
+	
 
 	return data;
 };
 
-const Reviews = () => {
+const Reviews = (props) => {
 	noStore();
-	const { data, error, mutate } = useSWR("/api/get-comment-data", fetcher);
-	const comment = useRef(null);
-	const name = useRef(null);
-	const submit = useRef(null);
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
+	const { data, error } = useSWR(`/api/get-reviews?id=${props.id}`, fetcher);
 
-		if (comment.current.value) {
-			const commentVal = comment.current.value.trim();
-			let nameVal = name.current.value || "Guest";
+	
 
-			if (!commentVal) return console.log("no comment yet");
+	const date = (createdAt) => {
+		function decodeTimestamp(isoString) {
+			const date = new Date(isoString);
 
-			try {
-				await fetch(
-					`/api/post-comment?name=${nameVal}&comment=${commentVal}`
-				);
-				name.current.value = "";
-				comment.current.value = "";
-				mutate();
-			} catch (error) {
-				console.error("Error submitting comment:", error);
-			}
+			const year = date.getFullYear();
+			const month = String(date.getMonth() + 1).padStart(2, "0");
+			const day = String(date.getDate()).padStart(2, "0");
+			const hours = String(date.getHours()).padStart(2, "0");
+			const minutes = String(date.getMinutes()).padStart(2, "0");
+			const seconds = String(date.getSeconds()).padStart(2, "0");
+			return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 		}
-	};
+
+		const isoTimestamp = createdAt;
+
+		const customFormattedDate = decodeTimestamp(isoTimestamp);
+		return customFormattedDate
+	}
 
 	if (error)
 		return (
@@ -148,64 +147,24 @@ const Reviews = () => {
 	return (
 		<section className={styles.comment_section_container}>
 			<div className={styles.comment_section_wrapper}>
-				<div className={styles.div1}>
-					<fieldset className={styles.fieldset}>
-						<legend>Leave A Comment!</legend>
-						<form
-							action=""
-							className={styles.form}
-						>
-							<div className={styles.form_name_wrapper}>
-								<label htmlFor="name_input">Name:</label>
-								<input
-									type="text"
-									id="name_input"
-									placeholder="Spongebob"
-									className={styles.input}
-									ref={name}
-								/>
-							</div>
-							<div className={styles.form_comment_wrapper}>
-								<label htmlFor="comment_input">Comment:</label>
-								<textarea
-									id="commont_input"
-									placeholder="Comment..."
-									required
-									className={styles.input}
-									rows={5}
-									ref={comment}
-								></textarea>
-							</div>
-							<div className={styles.submit_wrapper}>
-								<input
-									type="submit"
-									className={`${styles.input} ${styles.submit}`}
-									ref={submit}
-									onClick={(e) => {
-										handleSubmit(e);
-									}}
-								/>
-							</div>
-						</form>
-					</fieldset>
-				</div>
-				{/* <div className={styles.div2}> */}
+				
 				<fieldset className={styles.div2}>
-					<legend>Comments</legend>
+					<legend>Reviews</legend>
 					<div className={styles.comment_cards_container}>
-						{data.data.rows.map((item) => {
+						{data.results && data.results.length > 0 ?
+						data.results.map((item) => {
 							return (
-								<CommentCard
+								<Review
 									key={item.id}
-									name={item.name}
-									comment={item.comment}
-									date={item.date}
+									name={item.author_details.username}
+									comment={item.content}
+									date={date(item.created_at)}
 								/>
 							);
-						})}
+						}) : <h1>No Reviews Available</h1>
+						}
 					</div>
 				</fieldset>
-				{/* </div> */}
 			</div>
 		</section>
 	);

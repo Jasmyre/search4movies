@@ -6,6 +6,7 @@ import useSWR from "swr";
 import Loading from "../loading/Loading";
 import RecommendationSection from "../recommendation-section/RecommendationSection";
 import { unstable_noStore as noStore } from "next/cache";
+import Reviews from "../reviews/Reviews";
 
 const DetailsSection = (props) => {
 	// Disable caching for this component
@@ -70,9 +71,14 @@ const DetailsSection = (props) => {
 			similarData2,
 		};
 
-		console.log(providerData.results.PH);
+		const keywordsRes = await fetch(
+			`/api/keywords?id=${dataData.id}`,
+			{ cache: "no-store" }
+		);
+		const keywordsData = await keywordsRes.json();
 
-		return { dataData, providerData, data };
+
+		return { dataData, providerData, data, keywordsData };
 	};
 
 	const { data, error } = useSWR("Details", fetcher);
@@ -101,67 +107,69 @@ const DetailsSection = (props) => {
 		);
 
 	const flatrate = () => {
-		return (data.providerData.results.PH.flatrate) ? data.providerData.results.PH.flatrate.map( (item) => {
-			return (
-				<div key={item.provider_id}>
-						<a
-							href={data.providerData.results.PH.link}
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<p>{item.provider_name}</p>
-							<img
-								src={`https://image.tmdb.org/t/p/w500/${item.logo_path}`}
-								alt=""
-							/>
-						</a>
-				</div>
-			);}
-		) : ""
-	}
+		return data.providerData.results.PH.flatrate
+			? data.providerData.results.PH.flatrate.map((item) => {
+					return (
+						<div key={item.provider_id}>
+							<a
+								href={data.providerData.results.PH.link}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<p>{item.provider_name}</p>
+								<img
+									src={`https://image.tmdb.org/t/p/w500/${item.logo_path}`}
+									alt=""
+								/>
+							</a>
+						</div>
+					);
+			  })
+			: "";
+	};
 
 	const buy = () => {
-		return (data.providerData.results.PH.buy) ? data.providerData.results.PH.buy.map( (item) => {
-			return (
-				<div key={item.provider_id}>
-					<a
-						href={data.providerData.results.PH.link}
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						<p>{item.provider_name}</p>
-						<img
-							src={`https://image.tmdb.org/t/p/w500/${item.logo_path}`}
-							alt=""
-						/>
-					</a>
-				</div>
-			);}
-		) : ""
-	}
+		return data.providerData.results.PH.buy
+			? data.providerData.results.PH.buy.map((item) => {
+					return (
+						<div key={item.provider_id}>
+							<a
+								href={data.providerData.results.PH.link}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<p>{item.provider_name}</p>
+								<img
+									src={`https://image.tmdb.org/t/p/w500/${item.logo_path}`}
+									alt=""
+								/>
+							</a>
+						</div>
+					);
+			  })
+			: "";
+	};
 
 	const rent = () => {
-		return data.providerData.results.PH.rent ? (
-			data.providerData.results.PH.rent.map((item) => {
-				return (
-					<div key={item.provider_id}>
-						<a
-							href={data.providerData.results.PH.link}
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<p>{item.provider_name}</p>
-							<img
-								src={`https://image.tmdb.org/t/p/w500/${item.logo_path}`}
-								alt=""
-							/>
-						</a>
-					</div>
-				);
-			})
-		) : (
-			""
-		);
+		return data.providerData.results.PH.rent
+			? data.providerData.results.PH.rent.map((item) => {
+					return (
+						<div key={item.provider_id}>
+							<a
+								href={data.providerData.results.PH.link}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<p>{item.provider_name}</p>
+								<img
+									src={`https://image.tmdb.org/t/p/w500/${item.logo_path}`}
+									alt=""
+								/>
+							</a>
+						</div>
+					);
+			  })
+			: "";
 	};
 
 	return (
@@ -178,6 +186,13 @@ const DetailsSection = (props) => {
 								width={425}
 								height={541}
 							/>
+						</div>
+						<div className={styles.keywords_wrapper}>
+							{
+								(data.keywordsData) ? data.keywordsData.keywords.map((keyword) => {
+									return (<span className={styles.keyword}>{ keyword.name }</span>)
+								}) : <span className={styles.no_display}></span>
+							}
 						</div>
 						<div className={styles.details}>
 							<p>
@@ -210,9 +225,9 @@ const DetailsSection = (props) => {
 						<div className={styles.overview_wrapper}>
 							<h4>Overview: </h4>
 							<p>
-								{
-									(data.dataData.overview) ? data.dataData.overview : "No overview Available."
-								}
+								{data.dataData.overview
+									? data.dataData.overview
+									: "No overview Available."}
 							</p>
 						</div>
 						<div className={styles.source_wrapper}>
@@ -289,6 +304,7 @@ const DetailsSection = (props) => {
 			) : (
 				<p>No recommendations available</p>
 			)}
+			<Reviews id={data.dataData.id} />
 		</div>
 	);
 };

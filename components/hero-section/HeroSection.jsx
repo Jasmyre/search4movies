@@ -7,7 +7,7 @@ const HeroSection = () => {
 			<div className={styles.hero_wrapper}>
 				<h1 className="averia-serif-libre-bold">Discover Movies Now</h1>
 				<p className="cinzel">
-					simplify your movie search experience. Just type in a movie
+					Simplify your movie search experience. Just type in a movie
 					title, and we'll provide you with everything you need to
 					know—release date, language, overview, and ratings. We also
 					show you where you can watch it in your country, making it

@@ -1,10 +1,10 @@
-'use client'
+"use client";
 
 import React from "react";
-import styles from "./CommentCard.module.css";
+import styles from "./Review.module.css";
 import { useInView } from "react-intersection-observer";
 
-const CommentCard = (props) => {
+const Review = (props) => {
 	const { ref, inView } = useInView({
 		triggerOnce: false, 
 		threshold: 0.1, 
@@ -32,4 +32,4 @@ const CommentCard = (props) => {
 	);
 };
 
-export default CommentCard;
+export default Review;

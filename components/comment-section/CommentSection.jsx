@@ -184,7 +184,7 @@ const CommentSection = () => {
 				</div>
 				{/* <div className={styles.div2}> */}
 				<fieldset className={styles.div2}>
-					<legend>Comments</legend>
+					<legend>Comments ( {data.data.rowCount} )</legend>
 					<div className={styles.comment_cards_container}>
 						{
 							data.data.rows.map((item) => {

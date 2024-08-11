@@ -48,7 +48,6 @@
 
 .inner_detail_div1 .details {
     width: 100%;
-    padding: 40px 0;
 
     @media only screen and (max-width: 600px) {
         padding: 0;
@@ -169,6 +168,11 @@
 	color: var(--color-1);
 }
 
+.overview_wrapper h4 {
+	padding: 0;
+	margin: 0;
+}
+
 .overview_wrapper p {
 	text-align: justify;
 }
@@ -188,4 +192,25 @@
 .no_display {
 	position: absolute;
 	display: none;
+}
+
+.keywords_wrapper {
+	padding: 16px 0;
+	width: 100%;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.keyword {
+	background: var(--color-3);
+	color: var(--color-1);
+	padding: 6px 12px;
+	font-size: 12px;
+	border-radius: 4px;
+	border: solid 1px var(--color-2);
 }
