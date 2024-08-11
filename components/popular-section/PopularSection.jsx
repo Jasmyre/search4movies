@@ -72,7 +72,22 @@ const PopularSection = () => {
 
 	const { data, error } = useSWR("Popular",fetcher);
 
-	if (error) return "An Error Has Occured";
+	if (error) return (
+		<div
+			className={styles.popular_section_container}
+			id="popular"
+		>
+			<div className={styles.popular_section_wrapper}>
+				<div className={styles.header_wrapper}>
+					<h1>Popular</h1>
+				</div>
+				<hr />
+				<div className={styles.loading_wrapper}>
+					<h1>No Data Found. Please Try Again Later.</h1>
+				</div>
+			</div>
+		</div>
+	);
 	if (!data) return (
 		<div
 			className={styles.popular_section_container}

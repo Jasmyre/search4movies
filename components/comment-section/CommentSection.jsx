@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useEffect, useRef} from "react";
+import React, {useRef} from "react";
 import styles from "./CommentSection.module.css";
 import useSWR from "swr";
 
@@ -83,7 +83,7 @@ const CommentSection = () => {
 				<fieldset className={styles.div2}>
 					<legend>Comments</legend>
 					<div className={styles.comment_cards_container}>
-						<h1>No Data Found. Please Try Again!</h1>
+						<h1>No Data Found. Please Try Again Later.</h1>
 					</div>
 				</fieldset>
 			</div>

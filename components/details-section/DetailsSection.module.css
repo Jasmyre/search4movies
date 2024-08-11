@@ -18,6 +18,7 @@
 .details_section_wrapper legend {
 	font-size: 32px;
 	font-weight: 800;
+	padding: 12px 24px;
 }
 
 .inner_detail {
@@ -70,7 +71,7 @@
 }
 
 .inner_detail_div2 fieldset {
-	width: 30vw;
+	width: 25vw;
 
 	@media only screen and (max-width: 1600px) {
 		width: 35vw;
@@ -81,21 +82,22 @@
 	}
 
 	@media only screen and (max-width: 1000px) {
-		width: 85vw;
+		width: 80vw;
 	}
 
 	@media only screen and (max-width: 900px) {
-		width: 75vw;
+		width: 85vw;
 	}
 
 	@media only screen and (max-width: 600px) {
-		width: 70vw;
+		width: 75vw;
 	}
 }
 
 .inner_detail_div2 img {
-	width: 50px;
-	height: 50px;
+	width: 40px;
+	height: 40px;
+	border-radius: 12px;
 }
 
 .inner_detail_div2 fieldset legend {
@@ -117,12 +119,58 @@
 }
 
 .provider_wrapper {
+	padding: 8px 0 24px 0;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	gap: 32px;
+	flex-wrap: wrap;
+}
+
+.provider_wrapper div {
+	width: 100%;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	gap: 16px;
+}
+
+.provider_wrapper div p {
+	padding: 0;
+	margin: 0;
+	color: var(--color-2);
+}
+
+.provider_wrapper div a {
+	width: 100%;
+	
+	background: var(--color-4);
+	padding: 0 16px;
+	text-decoration: none;
+
 	display: flex;
 	flex-direction: row;
-	justify-content: flex-start;
+	justify-content: space-between;
 	align-items: center;
-	gap: 16px;
-	flex-wrap: wrap;
+
+	cursor: pointer;
+
+	@media only screen and (max-width: 900px) {
+		cursor: none;
+		
+	}
+}
+
+.provider_wrapper div a:hover ~ a p {
+	color: var(--color-1);
+}
+
+.overview_wrapper p {
+	text-align: justify;
 }
 
 .err_fieldset {
@@ -135,4 +183,9 @@
 	font-size: 16px;
 	color: var(--color-2);
 	font-weight: 100;
+}
+
+.no_display {
+	position: absolute;
+	display: none;
 }

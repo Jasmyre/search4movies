@@ -6,7 +6,7 @@ const SimilarMovies = (props) => {
 	return (
 		<ul className={styles.movies}>
 			<div className={styles.div1}>
-				{props.data.map((movie) =>
+				{props.data.similarData1.results.map((movie) =>
 					movie.poster_path ? (
 						<Movie
 							key={movie.id}
@@ -26,7 +26,7 @@ const SimilarMovies = (props) => {
 				)}
 			</div>
 			<div className={styles.div2}>
-				{props.data.map((movie) =>
+				{props.data.similarData2.results.map((movie) =>
 					movie.poster_path ? (
 						<Movie
 							key={movie.id}

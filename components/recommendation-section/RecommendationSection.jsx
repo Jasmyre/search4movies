@@ -2,14 +2,13 @@
 
 import React from "react";
 import styles from "./RecommendationSection.module.css";
-import useSWR from "swr";
 
 import SimilarMovies from "../similar-movies/SimilarMovies";
 import RecommendationMovies from "../recommendation-movies/RecommendationMovies";
-import Loading from "../loading/Loading";
 
 const RecommendationSection = (props) => {
-	console.log(props.data.results)
+	console.log(props.data);
+	
 	return (
 		<>
 			<div
@@ -22,10 +21,12 @@ const RecommendationSection = (props) => {
 					</div>
 					<hr />
 					<div className={styles.content_wrapper}>
-						{
-							(props.data.results) ? <RecommendationMovies data={props.data.results} /> : <p>no results</p>
-						}
-						
+						{props.data &&
+						props.data.recommendationData1.results.length > 0 ? (
+							<RecommendationMovies data={props.data} />
+						) : (
+							<h1>No Recommended Movies.</h1>
+						)}
 					</div>
 				</div>
 			</div>
@@ -39,8 +40,12 @@ const RecommendationSection = (props) => {
 					</div>
 					<hr />
 					<div className={styles.content_wrapper}>
-						
-						<SimilarMovies data={props.data.results} />
+						{props.data &&
+						props.data.similarData1.results.length > 0 ? (
+							<SimilarMovies data={props.data} />
+						) : (
+							<h1>No Similar Movies.</h1>
+						)}
 					</div>
 				</div>
 			</div>

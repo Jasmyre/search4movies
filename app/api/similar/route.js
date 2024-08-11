@@ -20,6 +20,7 @@ export async function GET(request) {
 		method: "GET",
 		headers: {
 			accept: "application/json",
+			'Cache-Control': 'no-cache',
 			Authorization:
 				"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ODZiZWIyMmM1ZDc4YzM0NjVlNWU2Y2E0ZTc3YmMwMiIsIm5iZiI6MTcyMzAyMjAwNy44MzEzMSwic3ViIjoiNjZiMDc5ODljMTU4ZjlmNWE5NTc1NGFmIiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.oPWjqssCHRDNFX8_nX7FzHM2M2vwze9c77uApm-OojA",
 		},
@@ -28,7 +29,7 @@ export async function GET(request) {
 
 	try {
 		const apiResponse = await fetch(
-			`https://api.themoviedb.org/3/movie/${id}/recommendations?language=en-US&page=${page}`,
+			`https://api.themoviedb.org/3/movie/${id}/similar?language=en-US&page=${page}`,
 			options
 		);
 
@@ -40,7 +41,12 @@ export async function GET(request) {
 		}
 
 		const data = await apiResponse.json();
-		return NextResponse.json(data, { status: 200 });
+		return NextResponse.json(data, {
+			status: 200,
+			headers: {
+				"Cache-Control": "no-store", // This prevents caching
+			},
+		});
 	} catch (error) {
 		return NextResponse.json(
 			{ error: "Internal Server Error" },

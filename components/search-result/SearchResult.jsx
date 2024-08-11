@@ -38,7 +38,14 @@ const SearchResult = (props) => {
 
 	const { data, error } = useSWR("Popular",fetcher);
 
-	if (error) return "An Error Has Occured";
+	if (error) return (
+		<div className={styles.search_result_container}>
+			<fieldset className={styles.search_result_wrapper}>
+				<legend>Search Result</legend>
+				<h1>No Data Found. Please Try Again Later.</h1>
+			</fieldset>
+		</div>
+	);
 	if (!data) return (
 		<div className={styles.search_result_container}>
 			<fieldset className={styles.search_result_wrapper}>

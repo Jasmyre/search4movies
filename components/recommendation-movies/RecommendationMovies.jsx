@@ -6,7 +6,7 @@ const RecommendationMovies = (props) => {
 	return (
 		<ul className={styles.movies}>
 			<div className={styles.div1}>
-				{props.data.map((movie) =>
+				{props.data.recommendationData1.results.map((movie) =>
 					movie.poster_path ? (
 						<Movie
 							key={movie.id}
@@ -26,7 +26,7 @@ const RecommendationMovies = (props) => {
 				)}
 			</div>
 			<div className={styles.div2}>
-				{props.data.map((movie) =>
+				{props.data.recommendationData2.results.map((movie) =>
 					movie.poster_path ? (
 						<Movie
 							key={movie.id}

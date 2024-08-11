@@ -15,3 +15,9 @@
 	justify-content: center;
 	align-items: center;
 }
+
+.search_result_wrapper legend {
+	font-size: 32px;
+	font-weight: 800;
+	padding: 12px 24px;
+}
