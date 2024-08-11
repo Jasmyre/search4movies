@@ -1,12 +1,12 @@
 import React from "react";
-import styles from "./PopularMovies.module.css";
-import Movie from "../movie/Movie"
+import styles from './RecommendationMovies.module.css';
+import Movie from "../movie/Movie";
 
-const PopularMovies = (props) => {
+const RecommendationMovies = (props) => {
 	return (
 		<ul className={styles.movies}>
 			<div className={styles.div1}>
-				{props.data.data1.results.map((movie) =>
+				{props.data.map((movie) =>
 					movie.poster_path ? (
 						<Movie
 							key={movie.id}
@@ -26,7 +26,7 @@ const PopularMovies = (props) => {
 				)}
 			</div>
 			<div className={styles.div2}>
-				{props.data.data2.results.map((movie) =>
+				{props.data.map((movie) =>
 					movie.poster_path ? (
 						<Movie
 							key={movie.id}
@@ -49,4 +49,4 @@ const PopularMovies = (props) => {
 	);
 };
 
-export default PopularMovies;
+export default RecommendationMovies;

@@ -8,8 +8,11 @@ const SearchBar = () => {
 	const btn = useRef(null);
 
 	const handleSearch = () => {
-		const query = inp.current.value;
-		window.location.href = `/search/${query}`;
+		if (inp.current.value) {
+			const query = inp.current.value.trim();
+			window.location.href = `/search/${query}`;
+		}
+
 	};
 
 	useEffect(() => {

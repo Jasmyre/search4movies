@@ -1,12 +1,11 @@
-
-'use client'
-
 import { useInView } from "react-intersection-observer";
-import React, {useRef} from "react";
+import React from "react";
 import styles from "./Movie.module.css";
 import PropTypes from 'prop-types'
+import { unstable_noStore as noStore } from "next/cache";
 
 const Movie = (props) => {
+	noStore();
 	const { ref, inView } = useInView({
 		triggerOnce: false, // Trigger animation only once
 		threshold: 0.1, // 10% of the element must be visible
