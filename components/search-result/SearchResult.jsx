@@ -59,7 +59,9 @@ const SearchResult = (props) => {
 		<div className={styles.search_result_container}>
 			<fieldset className={styles.search_result_wrapper}>
 				<legend>Search Result</legend>
-				<Movies data={data.results} />
+				{
+					data.results && data.results.length > 0 ? <Movies data={data.results} /> : <h1>{"No Movie Found."}</h1>
+				}
 			</fieldset>
 		</div>
 	);
