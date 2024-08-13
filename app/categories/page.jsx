@@ -4,7 +4,7 @@ import styles from "./page.module.css";
 import Header from "@/components/header/Header";
 import FooterSection from "@/components/footer-section/FooterSection";
 
-const page = ({ params }) => {
+const page = () => {
 	return (
 		<main>
 			<Header navigations={["home", "popular", "categories"]}></Header>
