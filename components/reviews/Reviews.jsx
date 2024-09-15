@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React from "react";
 import styles from "./Reviews.module.css";
 import useSWR from "swr";
 import { unstable_noStore as noStore } from "next/cache";

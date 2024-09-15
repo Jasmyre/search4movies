@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import styles from "./DetailsSection.module.css";
 import useSWR from "swr";
 import Loading from "../loading/Loading";
@@ -12,6 +12,8 @@ const DetailsSection = (props) => {
 	// Disable caching for this component
 	noStore();
 
+	const [currentCountry, setCurrentCountry] = useState("PH");
+	
 	// Fetcher function for useSWR
 	const fetcher = async () => {
 		const options = {
@@ -24,21 +26,26 @@ const DetailsSection = (props) => {
 			cache: "no-store",
 		};
 
-		// Fetch movie details
 		const dataRes = await fetch(
 			`https://api.themoviedb.org/3/movie/${props.id}?language=en-US`,
 			options
 		);
 		const dataData = await dataRes.json();
 
-		// Fetch watch providers
 		const providerRes = await fetch(
 			`https://api.themoviedb.org/3/movie/${dataData.id}/watch/providers`,
 			options
 		);
+
 		const providerData = await providerRes.json();
 
-		// Fetch recommendations via your own API
+		const countriesRes = await fetch(
+			`https://api.themoviedb.org/3/configuration/countries?language=en-US`,
+			options
+		);
+
+		const countriesData = await countriesRes.json();
+
 		const recommendationRes1 = await fetch(
 			`/api/recommendation?id=${dataData.id}&page=1`,
 			{ cache: "no-store" }
@@ -78,12 +85,12 @@ const DetailsSection = (props) => {
 		const keywordsData = await keywordsRes.json();
 
 
-		return { dataData, providerData, data, keywordsData };
+		return { dataData, providerData, data, keywordsData, countriesData };
 	};
 
 	const { data, error } = useSWR("Details", fetcher);
 
-	if (error)
+	if (error) {
 		return (
 			<div className={styles.details_section_container}>
 				<fieldset className={styles.details_section_wrapper}>
@@ -94,7 +101,8 @@ const DetailsSection = (props) => {
 				</fieldset>
 			</div>
 		);
-	if (!data)
+	}
+	if (!data) {
 		return (
 			<div className={styles.details_section_container}>
 				<fieldset className={styles.details_section_wrapper}>
@@ -105,14 +113,39 @@ const DetailsSection = (props) => {
 				</fieldset>
 			</div>
 		);
+	}
+
+
+	const countries = [];
+	data.countriesData.forEach((element) => {
+		countries.push(element);
+	});
+
+	countries.sort((a, b) => {
+		const nameA = a.english_name.toLowerCase();
+		const nameB = b.english_name.toLowerCase();
+
+		if (nameA < nameB) return -1;
+		if (nameA > nameB) return 1;
+		return 0;
+	});
+
+	const handleCountryChange = (e) => {
+		setCurrentCountry(e.target.value)
+		console.log(currentCountry);
+		
+	};
+
+
+		
 
 	const flatrate = () => {
-		return data.providerData.results.PH.flatrate
-			? data.providerData.results.PH.flatrate.map((item) => {
+		return data.providerData.results[currentCountry].flatrate
+			? data.providerData.results[currentCountry].flatrate.map((item) => {
 					return (
 						<div key={item.provider_id}>
 							<a
-								href={data.providerData.results.PH.link}
+								href={data.providerData.results[currentCountry].link}
 								target="_blank"
 								rel="noopener noreferrer"
 							>
@@ -129,12 +162,12 @@ const DetailsSection = (props) => {
 	};
 
 	const buy = () => {
-		return data.providerData.results.PH.buy
-			? data.providerData.results.PH.buy.map((item) => {
+		return data.providerData.results[currentCountry].buy
+			? data.providerData.results[currentCountry].buy.map((item) => {
 					return (
 						<div key={item.provider_id}>
 							<a
-								href={data.providerData.results.PH.link}
+								href={data.providerData.results[currentCountry].link}
 								target="_blank"
 								rel="noopener noreferrer"
 							>
@@ -151,12 +184,12 @@ const DetailsSection = (props) => {
 	};
 
 	const rent = () => {
-		return data.providerData.results.PH.rent
-			? data.providerData.results.PH.rent.map((item) => {
+		return data.providerData.results[currentCountry].rent
+			? data.providerData.results[currentCountry].rent.map((item) => {
 					return (
 						<div key={item.provider_id}>
 							<a
-								href={data.providerData.results.PH.link}
+								href={data.providerData.results[currentCountry].link}
 								target="_blank"
 								rel="noopener noreferrer"
 							>
@@ -171,6 +204,7 @@ const DetailsSection = (props) => {
 			  })
 			: "";
 	};
+	
 
 	return (
 		<div className={styles.details_section_container}>
@@ -188,11 +222,20 @@ const DetailsSection = (props) => {
 							/>
 						</div>
 						<div className={styles.keywords_wrapper}>
-							{
-								(data.keywordsData) ? data.keywordsData.keywords.map((keyword) => {
-									return (<span className={styles.keyword}>{ keyword.name }</span>)
-								}) : <span className={styles.no_display}></span>
-							}
+							{data.keywordsData ? (
+								data.keywordsData.keywords.map((keyword) => {
+									return (
+										<span
+											key={keyword.name}
+											className={styles.keyword}
+										>
+											{keyword.name}
+										</span>
+									);
+								})
+							) : (
+								<span className={styles.no_display}></span>
+							)}
 						</div>
 						<div className={styles.details}>
 							<p>
@@ -233,18 +276,38 @@ const DetailsSection = (props) => {
 						<div className={styles.source_wrapper}>
 							<fieldset
 								className={
-									!data.providerData.results.PH
+									!data.providerData.results[currentCountry]
 										? styles.err_fieldset
 										: ""
 								}
 							>
 								<legend>Watch Providers</legend>
 								<div className={styles.provider_wrapper}>
-									{data.providerData.results.PH ? (
+									<div className={styles.drop_down_wrapper}>
+										<h3>Country</h3>
+										<select
+											name="region"
+											id="region"
+											onChange={(e) => {
+												handleCountryChange(e);
+											}}
+										>
+											{
+												countries.map(country => {
+													return (country.iso_3166_1 == "PH") ? 
+														(<option key={country.iso_3166_1} value={country.iso_3166_1} selected >{country.english_name}</option>) :
+														(<option key={country.iso_3166_1} value={country.iso_3166_1} >{country.english_name}</option>)
+												})
+											}
+										</select>
+									</div>
+									{data.providerData.results[currentCountry] ? (
 										<>
-											{data.providerData.results.PH
+											{data.providerData.results[currentCountry]
 												.flatrate ? (
-												<div className={styles.buy}>
+												<div
+													className={`${styles.buy} ${styles.prov}`}
+												>
 													<p>flatrate</p>
 													{flatrate()}
 												</div>
@@ -256,10 +319,10 @@ const DetailsSection = (props) => {
 												></span>
 											)}
 
-											{data.providerData.results.PH
+											{data.providerData.results[currentCountry]
 												.buy ? (
 												<div
-													className={styles.flatrate}
+													className={`${styles.flatrate} ${styles.prov}`}
 												>
 													<p>buy</p>
 													{buy()}
@@ -272,9 +335,11 @@ const DetailsSection = (props) => {
 												></span>
 											)}
 
-											{data.providerData.results.PH
+											{data.providerData.results[currentCountry]
 												.rent ? (
-												<div className={styles.rent}>
+												<div
+													className={`${styles.rent} ${styles.prov}`}
+												>
 													<p>rent</p>
 													{rent()}
 												</div>
