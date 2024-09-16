@@ -8,8 +8,22 @@ import "./css/all.css";
 const roboto = Roboto({ subsets: ["latin"], weight: ["400"] });
 
 export const metadata = {
-	title: "Search4Movies",
-	description: "Search for movies",
+	metadataBase: new URL("https://search4movies.vercel.app"),
+	keywords: [
+		"search4movies",
+		"search for movies",
+		"search 4 movies",
+		"jasmyre search4movies",
+	],
+	title: {
+		default: "Search4Movies",
+		template: "%s | Search4Movies",
+	},
+	openGraph: {
+		description:
+			"Your Ultimate Movie Discovery Tool. Search for movies, explore genres, read reviews, and discover new favorites with just a few clicks. the go-to platform for all your movie searching needs.",
+	},
+	
 };
 
 export default function RootLayout({ children }) {
