@@ -20,10 +20,10 @@ export const metadata = {
 		template: "%s | Search4Movies",
 	},
 	openGraph: {
+		images: ["@/poster.png",],
 		description:
 			"Your Ultimate Movie Discovery Tool. Search for movies, explore genres, read reviews, and discover new favorites with just a few clicks. the go-to platform for all your movie searching needs.",
 	},
-	
 };
 
 export default function RootLayout({ children }) {
