@@ -1,6 +1,5 @@
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { poster } from "@/poster.png";
 
 import { Roboto } from "next/font/google";
 import "./globals.css";
@@ -23,10 +22,10 @@ export const metadata = {
 	openGraph: {
 		images: [
 			{
-				url: poster,
+				url: "https://github.com/Jasmyre/search4movies/blob/master/public/poster.png",
 				width: 1200,
 				height: 630,
-				alt: 'Thumbnail image for https://search4movies.vercel.app',
+				alt: "Thumbnail image for https://search4movies.vercel.app",
 			},
 		],
 		description:
