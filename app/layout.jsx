@@ -1,6 +1,6 @@
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { openGraphImage } from './shared-metadata';
+import poster from "@/poster.png";
 
 import { Roboto } from "next/font/google";
 import "./globals.css";
@@ -21,7 +21,14 @@ export const metadata = {
 		template: "%s | Search4Movies",
 	},
 	openGraph: {
-		...openGraphImage,
+		images: [
+			{
+				url: poster,
+				width: 1200,
+				height: 630,
+				alt: 'Thumbnail image for https://search4movies.vercel.app',
+			},
+		],
 		description:
 			"Your Ultimate Movie Discovery Tool. Search for movies, explore genres, read reviews, and discover new favorites with just a few clicks. the go-to platform for all your movie searching needs.",
 	},
