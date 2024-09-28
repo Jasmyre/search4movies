@@ -1,6 +1,6 @@
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import poster from "@/poster.png";
+import { poster } from "@/poster.png";
 
 import { Roboto } from "next/font/google";
 import "./globals.css";
