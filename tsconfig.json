@@ -27,7 +27,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "app/shared-metadata.js"  ],
   "exclude": [
     "node_modules"
   ]
