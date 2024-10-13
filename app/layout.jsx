@@ -5,6 +5,8 @@ import { Roboto } from "next/font/google";
 import "./globals.css";
 import "./css/all.css";
 
+import Head from "next/head";
+
 const roboto = Roboto({ subsets: ["latin"], weight: ["400"] });
 
 export const metadata = {
@@ -36,6 +38,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
+			<Head>
+				<meta
+					name="google-site-verification"
+					content="Z_jFqVnsRqmwaQwrIPd9ey7fdRY4tunPiojllRX0yI0"
+				/>
+			</Head>
 			<body className={roboto.className}>
 				{children}
 				<Analytics />
