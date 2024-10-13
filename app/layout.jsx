@@ -24,7 +24,7 @@ export const metadata = {
 	openGraph: {
 		images: [
 			{
-				url: "https://github.com/Jasmyre/search4movies/blob/master/public/poster.png",
+				url: "https://github.com/Jasmyre/search4movies/blob/master/public/poster.png?raw=true",
 				width: 1200,
 				height: 630,
 				alt: "Thumbnail image for https://search4movies.vercel.app",
